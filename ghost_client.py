@@ -32,7 +32,7 @@ def create_new_missing(link, first_name, last_name, missing_n, contact_n):
 
 if __name__ == "__main__":
     LINK = "http://0.0.0.0:5000/"
-    # LINK = ""
+    # LINK = "http://donde-estas.herokuapp.com/"
     COMMANDS = {
         "wake_up":            wake_up,
         "get_all_missing":    get_all_missing,
