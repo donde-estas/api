@@ -42,5 +42,6 @@ class Person(db.Model):
             'id': self.id,
             'name': self.first_name,
             'last_name': self.last_name,
-            'key_digest': self.key_digest
+            'key_digest': self.key_digest,
+            'created_date': self.created_date
         }
