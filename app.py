@@ -20,9 +20,10 @@ def hello():
 @app.route("/missing", methods=['GET'])
 def missing():
     try:
-        return jsonify(Person.query.all())
+        return jsonify({'success': True, 'payload': Person.query.all()})
     except Exception as error:
-        return jsonify({'error': str(error)})
+        return jsonify({'success': False, 'payload': str(error)})
+
 
 
 if __name__ == '__main__':
