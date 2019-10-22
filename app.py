@@ -19,20 +19,24 @@ def hello():
 
 
 @app.route("/missing", methods=['GET'])
-def missing():
+def get_all_missing():
     try:
-        return jsonify({'success': True, 'payload': Person.query.all()})
+        return jsonify({
+            'success': True,
+            'payload': [x.serialize() for x in Person.query.all()]
+        })
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)})
 
 
 @app.route("/missing", methods=['POST'])
-def missing():
+def create_new_missing():
     """Creates a missing person in the database."""
     try:
         first_name = request.args.get('first_name')
         last_name = request.args.get('last_name')
-        phone_number = request.args.get('phone_number')
+        missing_number = request.args.get('missing_number')
+        contact_number = request.args.get('contact_number')
         plain_key = generate_random_key()
 
         person = Person(first_name, last_name, plain_key)
