@@ -14,17 +14,29 @@ def wake_up(link):
     return requests.get(link)
 
 
-def missing(link):
+def get_all_missing(link):
     """Gets all missing persons."""
-    return requests.get(link + 'missing')
+    return requests.get(link + 'missing').json()
+
+
+def create_new_missing(link, first_name, last_name, missing_n, contact_n):
+    """Creates a new missing person in the database."""
+    payload = {
+        "first_name": first_name,
+        "last_name": last_name,
+        "missing_number": missing_n,
+        "contact_number": contact_n
+    }
+    return requests.post(link + 'missing', params=payload).json()
 
 
 if __name__ == "__main__":
     LINK = "http://0.0.0.0:5000/"
     # LINK = ""
     COMMANDS = {
-        "wake_up": wake_up,
-        "missing": missing
+        "wake_up":            wake_up,
+        "get_all_missing":    get_all_missing,
+        "create_new_missing": create_new_missing
     }
     RESPONSE = COMMANDS[sys.argv[1]](LINK, *sys.argv[2:])
     try:
