@@ -7,7 +7,10 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = os.environ['SECRET_KEY']
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL'] or f'postgresql://{os.environ["DB_HOST"]}/{os.environ["DB_NAME"]}'
+    SQLALCHEMY_DATABASE_URI = (
+        os.environ['DATABASE_URL'] or
+        f'postgresql://{os.environ["DB_HOST"]}/{os.environ["DB_NAME"]}'
+    )
 
 
 class ProductionConfig(Config):
