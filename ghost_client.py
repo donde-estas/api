@@ -14,11 +14,17 @@ def wake_up(link):
     return requests.get(link)
 
 
+def missing(link):
+    """Gets all missing persons."""
+    return requests.get(link + 'missing')
+
+
 if __name__ == "__main__":
     LINK = "http://0.0.0.0:5000/"
     # LINK = ""
     COMMANDS = {
-        "wake_up":                       wake_up,
+        "wake_up": wake_up,
+        "missing": missing
     }
     RESPONSE = COMMANDS[sys.argv[1]](LINK, *sys.argv[2:])
     try:
