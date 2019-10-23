@@ -97,24 +97,24 @@ def create_person():
             'find_person_button': templates.find_person_button,
             'key': plain_key
         }
-        missing_status = dispatch_mail(
+        missing_s = dispatch_mail(
             missing_mail,
             templates.template,
             templates.initial_missing_body,
             templates.default_style,
             mail_args)
-        contact_status = dispatch_mail(
+        contact_s = dispatch_mail(
             contact_mail,
             templates.template,
             templates.initial_contact_body,
             templates.default_style,
             mail_args)
 
-        if missing_status != 200 and contact_status != 200:
+        if missing_s.status_code != 200 and contact_s.status_code != 200:
             return jsonify({
                 'success': False,
                 'payload': 'Mailer error, could not deliver secret key'
-            }), max(missing_status, contact_status)
+            }), max(missing_s.status_code, contact_s.status_code)
 
         # Save Person in the database
         db.session.add(person)
