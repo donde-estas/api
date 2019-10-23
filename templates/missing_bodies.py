@@ -11,7 +11,7 @@ initial_missing_body = """
 </p>
 {find_person_button}
 <p>
-    La clave para acceder a la página y marcar a {contact_name} como
-    encontrad@ es: <strong>{key}</strong>
+    Alternativamente, la clave para acceder a la <a href="http://google.com">página</a> y marcarte como
+    encontrad@ es: <b>{key}</b>
 </p>
 """.replace("\n", " ").replace("  ", " ")
