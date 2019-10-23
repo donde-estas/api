@@ -31,5 +31,3 @@ def send_mails(mail_informant:str, mail_missing:str, name_informant:str, name_mi
         'title': "Usted ha sido registrad@ cómo posible desaparecid@"
     })
     print(r_m)
-
-send_mails("auirarrazaval@uc.cl", "alfonso.irarrazaval@gmail.com", "Alfonso", "John Doe")
