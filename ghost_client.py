@@ -43,6 +43,14 @@ def delete_missing(link, id_, plain_key):
     return requests.delete(f'{link}/missing/{id_}', params=payload).json()
 
 
+def find_missing(link, id_, plain_key):
+    """Sets a specific missing person as found."""
+    payload = {
+        "plain_key": plain_key
+    }
+    return requests.patch(f'{link}/missing/{id_}', params=payload).json()
+
+
 if __name__ == "__main__":
     LINK = "http://0.0.0.0:5000"
     # LINK = "http://donde-estas.herokuapp.com"
@@ -51,7 +59,8 @@ if __name__ == "__main__":
         "get_all_missing":    get_all_missing,
         "create_new_missing": create_new_missing,
         "get_missing":        get_missing,
-        "delete_missing":     delete_missing
+        "delete_missing":     delete_missing,
+        "find_missing":       find_missing
     }
     try:
         RESPONSE = COMMANDS[sys.argv[1]](LINK, *sys.argv[2:])
