@@ -12,4 +12,7 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 5000
 
+# Start the main process.
+RUN useradd -m myuser
+USER myuser
 CMD ["python", "manage.py", "runserver"]
