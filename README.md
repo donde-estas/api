@@ -7,7 +7,7 @@
 ```bash
 docker-compose build  # Build API image
 
-docker-compose run api python manage.py db init  # Create database (first time only)
+docker-compose run web python manage.py db init  # Create database (first time only)
 
 docker-compose up  # Start containers
 ```
@@ -15,8 +15,8 @@ docker-compose up  # Start containers
 ### Migrate the database
 
 ```bash
-docker-compose run api python manage.py db migrate  # Migrate database
-docker-compose run api python manage.py db upgrade  # Upgrade database
+docker-compose run web python manage.py db migrate  # Migrate database
+docker-compose run web python manage.py db upgrade  # Upgrade database
 ```
 
 ### Run Ghost Client
