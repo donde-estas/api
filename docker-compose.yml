@@ -6,7 +6,7 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     networks:
       - backend
-  api:
+  web:
     build: .
     volumes:
       - .:/myapp
