@@ -29,6 +29,21 @@ def get_all_missing():
         return jsonify({'success': False, 'payload': str(error)})
 
 
+@app.route("/missing/<int:id_>", methods=['GET'])
+def get_missing(id_):
+    try:
+        person = Person.query.filter_by(id=id_).first()
+        if not person:
+            raise Exception("User does not exist in the database (invalid id)")
+
+        return jsonify({
+            'success': True,
+            'payload': person.serialize()
+        })
+    except Exception as error:
+        return jsonify({'success': False, 'payload': str(error)})
+
+
 @app.route("/missing", methods=['POST'])
 def create_new_missing():
     """Creates a missing person in the database."""
@@ -52,7 +67,6 @@ def create_new_missing():
         })
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)})
-
 
 
 if __name__ == '__main__':
