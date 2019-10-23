@@ -60,13 +60,13 @@ if __name__ == "__main__":
     LINK = "http://0.0.0.0:5000"
     # LINK = "http://donde-estas.herokuapp.com"
     COMMANDS = {
-        "wake_up":            wake_up,
-        "get_all_missing":    get_all_missing,
-        "create_new_missing": create_new_missing,
-        "get_missing":        get_missing,
-        "delete_missing":     delete_missing,
-        "find_missing":       find_missing,
-        "get_all_found":      get_all_found
+        "wake_up":          wake_up,
+        "get_all_missing":  get_all_missing,
+        "create_person":    create_person,
+        "get_person":       get_person,
+        "delete_person":    delete_person,
+        "find_missing":     find_missing,
+        "get_all_found":    get_all_found
     }
     try:
         RESPONSE = COMMANDS[sys.argv[1]](LINK, *sys.argv[2:])
