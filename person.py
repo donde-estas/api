@@ -37,7 +37,7 @@ class Person(db.Model):
         """Checks plain key."""
         return check_key(plain_key, self.key_digest)
 
-    def set_as_found():
+    def set_as_found(self):
         """Sets the user as found."""
         if self.found:
             # If it had already been found
@@ -56,5 +56,7 @@ class Person(db.Model):
             'name': self.first_name,
             'last_name': self.last_name,
             'key_digest': self.key_digest,
-            'created_date': self.created_date
+            'found': self.found,
+            'created_date': self.created_date,
+            'found_date': self.found_date
         }
