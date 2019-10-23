@@ -2,5 +2,6 @@ Flask
 flask_sqlalchemy
 flask_script
 flask_migrate
+requests
 psycopg2-binary
 bcrypt
