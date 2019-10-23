@@ -2,7 +2,8 @@ import os
 import json
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from helpers.keys import generate_random_key
+from helpers import generate_random_key, dispatch_mail
+import templates
 
 app = Flask(__name__)
 
@@ -83,14 +84,42 @@ def create_person():
     try:
         first_name = request.args.get('first_name')
         last_name = request.args.get('last_name')
-        missing_number = request.args.get('missing_number')
-        contact_number = request.args.get('contact_number')
+        missing_mail = request.args.get('missing_mail')
+        contact_mail = request.args.get('contact_mail')
         plain_key = generate_random_key()
 
         person = Person(first_name, last_name, plain_key)
 
+        # Generate mails
+        mail_args = {
+            'missing_name': f'{first_name} {last_name}',
+            'contact_name': 'Generic Contact Person',
+            'find_person_button': templates.find_person_button,
+            'key': plain_key
+        }
+        missing_status = dispatch_mail(
+            missing_mail,
+            templates.template,
+            templates.initial_missing_body,
+            templates.default_style,
+            mail_args)
+        contact_status = dispatch_mail(
+            contact_mail,
+            templates.template,
+            templates.initial_contact_body,
+            templates.default_style,
+            mail_args)
+
+        if missing_status != 200 and contact_status != 200:
+            return jsonify({
+                'success': False,
+                'payload': 'Mailer error, could not deliver secret key'
+            }), max(missing_status, contact_status)
+
+        # Save Person in the database
         db.session.add(person)
         db.session.commit()
+
         return jsonify({
             'success': True,
             'payload': {
