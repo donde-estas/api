@@ -61,7 +61,7 @@ def get_missing(id_):
         if not person:
             return jsonify({
                 'success': False,
-                'payload': 'User does not exist in the database (invalid id)'
+                'payload': 'Person does not exist in the database (invalid id)'
             }), 404
 
         return jsonify({
@@ -80,7 +80,7 @@ def delete_missing(id_):
         if not person:
             return jsonify({
                 'success': False,
-                'payload': 'User does not exist in the database (invalid id)'
+                'payload': 'Person does not exist in the database (invalid id)'
             }), 404
         if not person.check_plain_key(plain_key):
             return jsonify({
@@ -91,8 +91,43 @@ def delete_missing(id_):
         db.session.commit()
         return jsonify({
             'success': True,
-            'payload': "User removed successfully"
+            'payload': "Person removed successfully"
         }), 200
+    except Exception as error:
+        return jsonify({'success': False, 'payload': str(error)}), 503
+
+
+@app.route("/missing/<int:id_>", methods=['PATCH'])
+def find_missing(id_):
+    try:
+        person = Person.query.filter_by(id=id_).first()
+        plain_key = request.args.get('plain_key')
+        if not person:
+            return jsonify({
+                'success': False,
+                'payload': 'Person does not exist in the database (invalid id)'
+            }), 404
+        if person.found:
+            return jsonify({
+                'success': False,
+                'payload': "Person has already been found"
+            }), 409
+        if not person.check_plain_key(plain_key):
+            return jsonify({
+                'success': False,
+                'payload': 'Invalid auth key'
+            }), 401
+        if person.set_as_found():
+            db.session.commit()
+            return jsonify({
+                'success': True,
+                'payload': "Person found successfully"
+            }), 200
+        else:
+            return jsonify({
+                'success': False,
+                'payload': "Unexpected internal server state change"
+            }), 409
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)}), 503
 
