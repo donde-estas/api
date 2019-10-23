@@ -2,3 +2,6 @@
 __pycache__/
 tmp
 .env
+*.html
+Pipfile
+Pipfile.lock
