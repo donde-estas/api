@@ -78,6 +78,17 @@ def get_all_found():
         return jsonify({'success': False, 'payload': str(error)}), 503
 
 
+@app.route("/person", methods=['GET'])
+def get_every_person():
+    try:
+        return jsonify({
+            'success': True,
+            'payload': [x.serialize() for x in Person.query.all()]
+        }), 200
+    except Exception as error:
+        return jsonify({'success': False, 'payload': str(error)}), 503
+
+
 @app.route("/person", methods=['POST'])
 def create_person():
     """Creates a missing person in the database."""
