@@ -19,13 +19,13 @@ def get_all_missing(link):
     return requests.get(f'{link}/missing').json()
 
 
-def create_person(link, first_name, last_name, missing_n, contact_n):
+def create_person(link, first_name, last_name, missing_mail, contact_mail):
     """Creates a new missing person in the database."""
     payload = {
         "first_name": first_name,
         "last_name": last_name,
-        "missing_number": missing_n,
-        "contact_number": contact_n
+        "missing_mail": missing_mail,
+        "contact_mail": contact_mail
     }
     return requests.post(f'{link}/person', params=payload).json()
 

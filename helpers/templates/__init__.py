@@ -1,1 +1,0 @@
-from .mail_templates import *
