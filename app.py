@@ -61,7 +61,7 @@ def get_missing(id_):
         if not person:
             return jsonify({
                 'success': False,
-                'payload': 'User does not exist in the database (invalid id)'
+                'payload': 'Person does not exist in the database (invalid id)'
             }), 404
 
         return jsonify({
@@ -80,7 +80,7 @@ def delete_missing(id_):
         if not person:
             return jsonify({
                 'success': False,
-                'payload': 'User does not exist in the database (invalid id)'
+                'payload': 'Person does not exist in the database (invalid id)'
             }), 404
         if not person.check_plain_key(plain_key):
             return jsonify({
@@ -91,7 +91,7 @@ def delete_missing(id_):
         db.session.commit()
         return jsonify({
             'success': True,
-            'payload': "User removed successfully"
+            'payload': "Person removed successfully"
         }), 200
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)}), 503
@@ -105,12 +105,12 @@ def find_missing(id_):
         if not person:
             return jsonify({
                 'success': False,
-                'payload': 'User does not exist in the database (invalid id)'
+                'payload': 'Person does not exist in the database (invalid id)'
             }), 404
         if person.found:
             return jsonify({
                 'success': False,
-                'payload': "User has already been found"
+                'payload': "Person has already been found"
             }), 409
         if not person.check_plain_key(plain_key):
             return jsonify({
@@ -121,7 +121,7 @@ def find_missing(id_):
             db.session.commit()
             return jsonify({
                 'success': True,
-                'payload': "User found successfully"
+                'payload': "Person found successfully"
             }), 200
         else:
             return jsonify({
