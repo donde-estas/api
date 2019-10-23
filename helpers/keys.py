@@ -31,9 +31,11 @@ def generate_key_digest(plain_key):
     """Digests a key using :LOG_ROUNDS log rounds."""
     return bcrypt.hashpw(
         plain_key.encode('utf-8'), bcrypt.gensalt(int(LOG_ROUNDS))
-    )
+    ).decode()
 
 
 def check_key(plain_key, key_digest):
     """Checks if :plain_key is the key to :key_digest"""
+    plain_key = plain_key.encode('utf-8')
+    key_digest = key_digest.encode('utf-8')
     return bcrypt.checkpw(plain_key, key_digest)
