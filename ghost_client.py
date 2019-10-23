@@ -19,6 +19,11 @@ def get_all_missing(link):
     return requests.get(link + 'missing').json()
 
 
+def get_missing(link, id_):
+    """Gets a specific missing person."""
+    return requests.get(link + 'missing' + '/' + str(id_)).json()
+
+
 def create_new_missing(link, first_name, last_name, missing_n, contact_n):
     """Creates a new missing person in the database."""
     payload = {
@@ -36,6 +41,7 @@ if __name__ == "__main__":
     COMMANDS = {
         "wake_up":            wake_up,
         "get_all_missing":    get_all_missing,
+        "get_missing":        get_missing,
         "create_new_missing": create_new_missing
     }
     RESPONSE = COMMANDS[sys.argv[1]](LINK, *sys.argv[2:])
