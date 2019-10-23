@@ -23,7 +23,9 @@ def get_all_missing():
     try:
         return jsonify({
             'success': True,
-            'payload': [x.serialize() for x in Person.query.all()]
+            'payload': [
+                x.serialize() for x in Person.query.all() if not x.found
+            ]
         }), 200
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)}), 503
