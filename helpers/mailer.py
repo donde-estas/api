@@ -17,14 +17,15 @@ def send_mail(mail: str, message: str):
     return status
 
 
-def complete_template_body(body, parameters):
+def complete_template_body(body, button, parameters):
     """Replaces the :parameters in :body."""
+    parameters['find_person_button'] = button
     return body.format(**parameters)
 
 
-def dispatch_mail(mail, template, body, style, parameters):
+def dispatch_mail(mail, template, body, style, button, parameters):
     """Completes the template and sends mail."""
-    body = complete_template_body(body, parameters)
+    body = complete_template_body(body, button, parameters)
     message = template.format(style=style, body=body)
     status = send_mail(mail, message)
     return status
