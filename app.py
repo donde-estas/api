@@ -134,5 +134,16 @@ def find_missing(id_):
         return jsonify({'success': False, 'payload': str(error)}), 503
 
 
+@app.route("/found", methods=['GET'])
+def get_all_found():
+    try:
+        return jsonify({
+            'success': True,
+            'payload': [x.serialize() for x in Person.query.all() if x.found]
+        }), 200
+    except Exception as error:
+        return jsonify({'success': False, 'payload': str(error)}), 503
+
+
 if __name__ == '__main__':
     app.run()
