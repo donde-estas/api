@@ -49,7 +49,7 @@ def create_new_missing():
                 'plain_key': plain_key,
                 'person': person.serialize()
             }
-        }), 201
+        }), 200
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)}), 503
 
