@@ -24,9 +24,9 @@ def get_all_missing():
         return jsonify({
             'success': True,
             'payload': [x.serialize() for x in Person.query.all()]
-        })
+        }), 200
     except Exception as error:
-        return jsonify({'success': False, 'payload': str(error)})
+        return jsonify({'success': False, 'payload': str(error)}), 503
 
 
 @app.route("/missing", methods=['POST'])
@@ -49,9 +49,9 @@ def create_new_missing():
                 'plain_key': plain_key,
                 'person': person.serialize()
             }
-        })
+        }), 201
     except Exception as error:
-        return jsonify({'success': False, 'payload': str(error)})
+        return jsonify({'success': False, 'payload': str(error)}), 503
 
 
 @app.route("/missing/<int:id_>", methods=['GET'])
@@ -59,14 +59,17 @@ def get_missing(id_):
     try:
         person = Person.query.filter_by(id=id_).first()
         if not person:
-            raise Exception("User does not exist in the database (invalid id)")
+            return jsonify({
+                'success': False,
+                'payload': 'User does not exist in the database (invalid id)'
+            }), 404
 
         return jsonify({
             'success': True,
             'payload': person.serialize()
-        })
+        }), 200
     except Exception as error:
-        return jsonify({'success': False, 'payload': str(error)})
+        return jsonify({'success': False, 'payload': str(error)}), 503
 
 
 @app.route("/missing/<int:id_>", methods=['DELETE'])
@@ -75,17 +78,23 @@ def delete_missing(id_):
         person = Person.query.filter_by(id=id_).first()
         plain_key = request.args.get('plain_key')
         if not person:
-            raise Exception("User does not exist in the database (invalid id)")
+            return jsonify({
+                'success': False,
+                'payload': 'User does not exist in the database (invalid id)'
+            }), 404
         if not person.check_plain_key(plain_key):
-            raise Exception("Invalid auth key")
+            return jsonify({
+                'success': False,
+                'payload': 'Invalid auth key'
+            }), 401
         db.session.delete(person)
         db.session.commit()
         return jsonify({
             'success': True,
             'payload': "User removed successfully"
-        })
+        }), 200
     except Exception as error:
-        return jsonify({'success': False, 'payload': str(error)})
+        return jsonify({'success': False, 'payload': str(error)}), 503
 
 
 if __name__ == '__main__':
