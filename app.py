@@ -29,21 +29,6 @@ def get_all_missing():
         return jsonify({'success': False, 'payload': str(error)})
 
 
-@app.route("/missing/<int:id_>", methods=['GET'])
-def get_missing(id_):
-    try:
-        person = Person.query.filter_by(id=id_).first()
-        if not person:
-            raise Exception("User does not exist in the database (invalid id)")
-
-        return jsonify({
-            'success': True,
-            'payload': person.serialize()
-        })
-    except Exception as error:
-        return jsonify({'success': False, 'payload': str(error)})
-
-
 @app.route("/missing", methods=['POST'])
 def create_new_missing():
     """Creates a missing person in the database."""
@@ -64,6 +49,40 @@ def create_new_missing():
                 'plain_key': plain_key,
                 'person': person.serialize()
             }
+        })
+    except Exception as error:
+        return jsonify({'success': False, 'payload': str(error)})
+
+
+@app.route("/missing/<int:id_>", methods=['GET'])
+def get_missing(id_):
+    try:
+        person = Person.query.filter_by(id=id_).first()
+        if not person:
+            raise Exception("User does not exist in the database (invalid id)")
+
+        return jsonify({
+            'success': True,
+            'payload': person.serialize()
+        })
+    except Exception as error:
+        return jsonify({'success': False, 'payload': str(error)})
+
+
+@app.route("/missing/<int:id_>", methods=['DELETE'])
+def delete_missing(id_):
+    try:
+        person = Person.query.filter_by(id=id_).first()
+        plain_key = request.args.get('plain_key')
+        if not person:
+            raise Exception("User does not exist in the database (invalid id)")
+        if not person.check_plain_key(plain_key):
+            raise Exception("Invalid auth key")
+        db.session.delete(person)
+        db.session.commit()
+        return jsonify({
+            'success': True,
+            'payload': "User removed successfully"
         })
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)})
