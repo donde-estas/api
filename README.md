@@ -165,6 +165,15 @@ The request returns code `200` upon success. The return `json` will look like:
 
 #### Response
 
+If the request fails (it may fail because :first_name or :last_name are empty strings or strings containing only whitespaces (code `400`) or because either mail does not match the `regex` expression (code `400`)), the `json` will look like:
+
+```json
+{
+  "payload": "Generic message detailing the failure",
+  "success": false
+}
+```
+
 The request returns code `200` upon success. The return `json` will look like:
 
 ```json
