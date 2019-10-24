@@ -2,6 +2,8 @@ Flask
 flask_sqlalchemy
 flask_script
 flask_migrate
+Flask-DbSeeder
+Faker
 requests
 psycopg2-binary
 bcrypt
