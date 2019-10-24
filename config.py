@@ -8,10 +8,9 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = (
-        os.environ.get('DATABASE_URL') or
-        f'postgresql://{os.environ.get("DB_USERNAME")}:'
-        f'{os.environ.get("DB_PASSWORD")}@{os.environ.get("DB_HOST")}/'
-        f'{os.environ.get("DB_NAME")}'
+        os.environ.get('DATABASE_URL') or f'postgresql://'
+        f'{os.environ.get("DB_USERNAME")}:{os.environ.get("DB_PASSWORD")}@'
+        f'{os.environ.get("DB_HOST")}/{os.environ.get("DB_NAME")}'
     )
 
 
