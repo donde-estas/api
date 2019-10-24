@@ -10,7 +10,7 @@ div.container {
     margin: 3%;
 }
 
-a {
+a.found {
     background-color: #049f04;
     color: white!important;
     padding: 2% 2%;

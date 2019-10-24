@@ -1,3 +1,3 @@
 find_person_button = """
-<a href="http://google.com" target="_blank">¡Estoy Bien!</a>
+<a class="found" href="{found_link}" target="_blank">{message}</a>
 """.replace("\n", " ").replace("  ", " ")

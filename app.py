@@ -78,6 +78,17 @@ def get_all_found():
         return jsonify({'success': False, 'payload': str(error)}), 503
 
 
+@app.route("/person", methods=['GET'])
+def get_every_person():
+    try:
+        return jsonify({
+            'success': True,
+            'payload': [x.serialize() for x in Person.query.all()]
+        }), 200
+    except Exception as error:
+        return jsonify({'success': False, 'payload': str(error)}), 503
+
+
 @app.route("/person", methods=['POST'])
 def create_person():
     """Creates a missing person in the database."""
@@ -94,20 +105,26 @@ def create_person():
         mail_args = {
             'missing_name': f'{first_name} {last_name}',
             'contact_name': 'Generic Contact Person',
-            'find_person_button': templates.find_person_button,
             'key': plain_key
         }
+
+        found_link = "https://google.com"
+
         missing_s = dispatch_mail(
             missing_mail,
             templates.template,
             templates.initial_missing_body,
             templates.default_style,
+            templates.find_person_button.format(found_link=found_link, 
+                                                message="¡Estoy Bien!"),
             mail_args)
         contact_s = dispatch_mail(
             contact_mail,
             templates.template,
             templates.initial_contact_body,
             templates.default_style,
+            templates.find_person_button.format(found_link=found_link, 
+                                                message="¡Apareció!"),
             mail_args)
 
         if missing_s.status_code != 200 and contact_s.status_code != 200:
