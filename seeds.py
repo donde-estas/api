@@ -23,7 +23,7 @@ class PersonSeeder(Command):
             print(f'Invalid seed number argument. Defaulting to {seed_number}')
         else:
             seed_number = int(args[0])
-            printf(f'Seeding {seed_number} persons into the database')
+            print(f'Seeding {seed_number} persons into the database')
         PersonSeeder.fake.add_provider(internet)
         for _ in range(int(seed_number)):
             self.seed_one_person()
