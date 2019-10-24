@@ -42,7 +42,7 @@ class PersonSeeder(Command):
         )
         plain_key = generate_random_key()
 
-        coords = PersonSeeder.fake.location_on_land(country_code="CL")
+        coords = PersonSeeder.fake.local_latlng(country_code="CL")
         latitude = float(coords[0])
         longitude = float(coords[1])
 
@@ -50,7 +50,7 @@ class PersonSeeder(Command):
         if random() < 0.75:
             last_seen = True
         else:
-            last_seen = True
+            last_seen = False
 
         person = Person(first_name, last_name, mail, contact_mail, plain_key,
                         latitude, longitude, last_seen)

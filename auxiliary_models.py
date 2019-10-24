@@ -15,7 +15,7 @@ class Location(db.Model):
     existent = db.Column(db.Boolean())
 
     person_id = db.Column(db.ForeignKey('person.id'))
-    person = db.relationship("Person", back_populates="location")
+    person = db.relationship("Person", back_populates="last_seen")
 
     def __init__(self, latitude, longitude, existent=False):
         self.existent = existent
