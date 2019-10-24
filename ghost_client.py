@@ -24,13 +24,17 @@ def get_all_missing(link):
     return requests.get(f'{link}/missing').json()
 
 
-def create_person(link, first_name, last_name, missing_mail, contact_mail):
+def create_person(link, first_name, last_name, missing_mail, contact_mail,
+                  latitude, longitude, last_seen):
     """Creates a new missing person in the database."""
     payload = {
         "first_name": first_name,
         "last_name": last_name,
         "missing_mail": missing_mail,
-        "contact_mail": contact_mail
+        "contact_mail": contact_mail,
+        "latitude": latitude,
+        "longitude": longitude,
+        "last_seen": last_seen == "True"
     }
     return requests.post(f'{link}/person', params=payload).json()
 
@@ -63,7 +67,7 @@ def get_all_found(link):
 
 if __name__ == "__main__":
     LINK = "http://0.0.0.0:5000"
-    # LINK = "http://donde-estas.herokuapp.com"
+    # LINK = "http://donde-estas-api.herokuapp.com"
     COMMANDS = {
         "wake_up":           wake_up,
         "get_every_person":  get_every_person,

@@ -1,7 +1,7 @@
 from random import random, randint
 from datetime import timedelta
 from faker import Faker
-from faker.providers import internet
+from faker.providers import internet, geo
 from flask_script import Command
 from person import Person
 from helpers import generate_random_key
@@ -25,6 +25,7 @@ class PersonSeeder(Command):
             seed_number = int(args[0])
             print(f'Seeding {seed_number} persons into the database')
         PersonSeeder.fake.add_provider(internet)
+        PersonSeeder.fake.add_provider(geo)
         for _ in range(int(seed_number)):
             self.seed_one_person()
         for person in PersonSeeder.people:
@@ -41,7 +42,18 @@ class PersonSeeder(Command):
         )
         plain_key = generate_random_key()
 
-        person = Person(first_name, last_name, mail, contact_mail, plain_key)
+        coords = PersonSeeder.fake.local_latlng(country_code="CL")
+        latitude = float(coords[0])
+        longitude = float(coords[1])
+
+        # Find 75% of the seeded people
+        if random() < 0.75:
+            last_seen = True
+        else:
+            last_seen = False
+
+        person = Person(first_name, last_name, mail, contact_mail, plain_key,
+                        latitude, longitude, last_seen)
 
         # Find 40% of the seeded people
         if random() < 0.4:
