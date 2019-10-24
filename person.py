@@ -55,7 +55,6 @@ class Person(db.Model):
             'id': self.id,
             'name': self.first_name,
             'last_name': self.last_name,
-            'key_digest': self.key_digest,
             'found': self.found,
             'created_date': self.created_date,
             'found_date': self.found_date
