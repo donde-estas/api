@@ -60,7 +60,6 @@ The request returns code `200` upon success. The return `json` will look like:
       "found": false,
       "found_date": null,
       "id": 1,
-      "key_digest": "$2b$12$qaWmfu.nG2Akb/sLoLdrj.wid6DM0i55zTHFI36UH.r4G..rv8SjK",
       "last_name": "Martínez",
       "name": "Ariel"
     },
@@ -69,7 +68,6 @@ The request returns code `200` upon success. The return `json` will look like:
       "found": false,
       "found_date": null,
       "id": 3,
-      "key_digest": "$2b$12$NyknKBZurcmen1gYV0V3OuPzDm2gOjsvS2SoY5J03zRVjXcmm0d5a",
       "last_name": "Leal",
       "name": "Daniel"
     },
@@ -78,7 +76,6 @@ The request returns code `200` upon success. The return `json` will look like:
       "found": false,
       "found_date": null,
       "id": 27,
-      "key_digest": "$2b$12$Xir8RZtDwq2vW4Bp7Iw/S.TGpu0g6N0KkmIJ.eeOlYM7y.vUwXi4K",
       "last_name": "Irarrázaval",
       "name": "Alfonso"
     }
@@ -137,7 +134,6 @@ The request returns code `200` upon success. The return `json` will look like:
       "found": true,
       "found_date": "Wed, 23 Oct 2019 04:37:21 GMT",
       "id": 1,
-      "key_digest": "$2b$12$qaWmfu.nG2Akb/sLoLdrj.wid6DM0i55zTHFI36UH.r4G..rv8SjK",
       "last_name": "Martínez",
       "name": "Ariel"
     },
@@ -146,7 +142,6 @@ The request returns code `200` upon success. The return `json` will look like:
       "found": true,
       "found_date": "Wed, 23 Oct 2019 06:17:02 GMT",
       "id": 3,
-      "key_digest": "$2b$12$NyknKBZurcmen1gYV0V3OuPzDm2gOjsvS2SoY5J03zRVjXcmm0d5a",
       "last_name": "Leal",
       "name": "Daniel"
     }
@@ -179,7 +174,6 @@ The request returns code `200` upon success. The return `json` will look like:
     "found": false,
     "found_date": null,
     "id": 8,
-    "key_digest": "$2b$12$uTCD1kGChKsP0OU7MAz3NuIPoMcBDXTNNnua9zzM4DbaEox4g87mG",
     "last_name": "Leal",
     "name": "Daniel"
   },
@@ -213,7 +207,6 @@ The request returns code `200` upon success. The return `json` will look like:
     "found": false,
     "found_date": null,
     "id": 7,
-    "key_digest": "$2b$12$Xir8RZtDwq2vW4Bp7Iw/S.TGpu0g6N0KkmIJ.eeOlYM7y.vUwXi4K",
     "last_name": "Leal",
     "name": "Daniel"
   },
