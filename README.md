@@ -61,6 +61,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": null,
       "id": 1,
       "last_name": "Martínez",
+      "mail": "ariel_martinez@email.example",
       "name": "Ariel"
     },
     {
@@ -69,6 +70,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": null,
       "id": 3,
       "last_name": "Leal",
+      "mail": "daniel_leal@email.example",
       "name": "Daniel"
     },
     {
@@ -77,6 +79,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": null,
       "id": 27,
       "last_name": "Irarrázaval",
+      "mail": "alfonso_irarrazaval@email.example",
       "name": "Alfonso"
     }
   ],
@@ -135,6 +138,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": "Wed, 23 Oct 2019 04:37:21 GMT",
       "id": 1,
       "last_name": "Martínez",
+      "mail": "ariel_martinez@email.example",
       "name": "Ariel"
     },
     {
@@ -143,6 +147,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": "Wed, 23 Oct 2019 06:17:02 GMT",
       "id": 3,
       "last_name": "Leal",
+      "mail": "daniel_leal@email.example",
       "name": "Daniel"
     }
   ],
@@ -169,6 +174,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": "Wed, 23 Oct 2019 04:37:21 GMT",
       "id": 1,
       "last_name": "Martínez",
+      "mail": "ariel_martinez@email.example",
       "name": "Ariel"
     },
     {
@@ -177,6 +183,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": null,
       "id": 2,
       "last_name": "Quiroz",
+      "mail": "nicolas_quiroz@email.example",
       "name": "Nicolás"
     }
     {
@@ -185,6 +192,7 @@ The request returns code `200` upon success. The return `json` will look like:
       "found_date": "Wed, 23 Oct 2019 06:17:02 GMT",
       "id": 3,
       "last_name": "Leal",
+      "mail": "daniel_leal@email.example",
       "name": "Daniel"
     }
   ],
@@ -226,6 +234,7 @@ The request returns code `200` upon success. The return `json` will look like:
     "found_date": null,
     "id": 8,
     "last_name": "Leal",
+    "mail": "daniel_leal@email.example",
     "name": "Daniel"
   },
   "success": true
@@ -259,6 +268,7 @@ The request returns code `200` upon success. The return `json` will look like:
     "found_date": null,
     "id": 7,
     "last_name": "Leal",
+    "mail": "daniel_leal@email.example",
     "name": "Daniel"
   },
   "success": true
