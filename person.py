@@ -4,12 +4,13 @@ from datetime import datetime
 
 from app import app, db
 
+from auxiliary_models import Location
 from helpers.keys import generate_key_digest, check_key
 
 
 class Person(db.Model):
 
-    """Models the user."""
+    """Models a person."""
 
     __tablename__ = 'person'
 
@@ -23,14 +24,22 @@ class Person(db.Model):
     found = db.Column(db.Boolean())
     found_date = db.Column(db.DateTime())
 
-    def __init__(self, first_name, last_name, mail, contact_mail, plain_key):
+    last_seen = db.relationship(
+        "Location",
+        uselist=False,
+        back_populates="person"
+    )
+
+    def __init__(self, first_name, last_name, mail, contact_mail, plain_key,
+                 latitude, longitude, last_seen=False):
         self.first_name = first_name
         self.last_name = last_name
         self.mail = mail
         self.contact_mail = contact_mail
         self.created_date = datetime.utcnow()
-        self.found = False
         self.found_date = None
+        self.last_seen = Location(latitude, longitude, last_seen)
+        self.found = False
         self.set_key_digest(plain_key)
 
     def set_key_digest(self, plain_key):
@@ -61,5 +70,6 @@ class Person(db.Model):
             'last_name': self.last_name,
             'found': self.found,
             'created_date': self.created_date,
-            'found_date': self.found_date
+            'found_date': self.found_date,
+            'last_seen': self.last_seen.serialize()
         }
