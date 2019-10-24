@@ -27,7 +27,7 @@ class Person(db.Model):
         self.first_name = first_name
         self.last_name = last_name
         self.mail = mail
-        self.contact_mail = mail
+        self.contact_mail = contact_mail
         self.created_date = datetime.utcnow()
         self.found = False
         self.found_date = None
