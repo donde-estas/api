@@ -1,7 +1,9 @@
 import os
+import re
 import json
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from custom_exceptions import EmptyNameError, InvalidMailError
 from helpers import generate_random_key, dispatch_mail
 import templates
 
@@ -12,6 +14,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 from person import Person
+
+MAIL_TESTER = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
 
 @app.route("/")
@@ -82,10 +86,16 @@ def get_all_found():
 def create_person():
     """Creates a missing person in the database."""
     try:
-        first_name = request.args.get('first_name')
-        last_name = request.args.get('last_name')
-        missing_mail = request.args.get('missing_mail')
-        contact_mail = request.args.get('contact_mail')
+        first_name = request.args.get('first_name').strip()
+        last_name = request.args.get('last_name').strip()
+        if not first_name or not last_name:
+            raise EmptyNameError()
+        missing_mail = request.args.get('missing_mail').strip()
+        contact_mail = request.args.get('contact_mail').strip()
+        if not MAIL_TESTER.match(missing_mail):
+            raise InvalidMailError(missing_mail)
+        if not MAIL_TESTER.match(contact_mail):
+            raise InvalidMailError(contact_mail)
         plain_key = generate_random_key()
 
         person = Person(first_name, last_name, plain_key)
@@ -122,11 +132,10 @@ def create_person():
 
         return jsonify({
             'success': True,
-            'payload': {
-                'plain_key': plain_key,
-                'person': person.serialize()
-            }
+            'payload': person.serialize()
         }), 200
+    except (EmptyNameError, InvalidMailError) as error:
+        return jsonify({'success': False, 'payload': str(error)}), 400
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)}), 503
 
