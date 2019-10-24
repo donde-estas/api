@@ -16,14 +16,18 @@ class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String())
     last_name = db.Column(db.String())
+    mail = db.Column(db.String())
+    contact_mail = db.Column(db.String())
     key_digest = db.Column(db.String())
     created_date = db.Column(db.DateTime())
     found = db.Column(db.Boolean())
     found_date = db.Column(db.DateTime())
 
-    def __init__(self, first_name, last_name, plain_key):
+    def __init__(self, first_name, last_name, mail, contact_mail, plain_key):
         self.first_name = first_name
         self.last_name = last_name
+        self.mail = mail
+        self.contact_mail = mail
         self.created_date = datetime.utcnow()
         self.found = False
         self.found_date = None
@@ -54,6 +58,7 @@ class Person(db.Model):
         return {
             'id': self.id,
             'name': self.first_name,
+            'mail': self.mail,
             'last_name': self.last_name,
             'found': self.found,
             'created_date': self.created_date,
