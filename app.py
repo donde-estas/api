@@ -109,7 +109,8 @@ def create_person():
             raise InvalidMailError(contact_mail)
         plain_key = generate_random_key()
 
-        person = Person(first_name, last_name, plain_key)
+        person = Person(first_name, last_name, missing_mail,
+                        contact_mail, plain_key)
 
         # Generate mails
         mail_args = {
@@ -125,17 +126,23 @@ def create_person():
             templates.template,
             templates.initial_missing_body,
             templates.default_style,
-            templates.find_person_button.format(found_link=found_link, 
-                                                message="¡Estoy Bien!"),
-            mail_args)
+            templates.find_person_button.format(
+                found_link=found_link,
+                message="¡Estoy Bien!"
+            ),
+            mail_args
+        )
         contact_s = dispatch_mail(
             contact_mail,
             templates.template,
             templates.initial_contact_body,
             templates.default_style,
-            templates.find_person_button.format(found_link=found_link, 
-                                                message="¡Apareció!"),
-            mail_args)
+            templates.find_person_button.format(
+                found_link=found_link,
+                message="¡Apareció!"
+            ),
+            mail_args
+        )
 
         if missing_s.status_code != 200 and contact_s.status_code != 200:
             return jsonify({
