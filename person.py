@@ -58,7 +58,6 @@ class Person(db.Model):
         return {
             'id': self.id,
             'name': self.first_name,
-            'mail': self.mail,
             'last_name': self.last_name,
             'found': self.found,
             'created_date': self.created_date,
