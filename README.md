@@ -175,16 +175,13 @@ The request returns code `200` upon success. The return `json` will look like:
 ```json
 {
   "payload": {
-    "person": {
-      "created_date": "Wed, 23 Oct 2019 05:31:06 GMT",
-      "found": false,
-      "found_date": null,
-      "id": 8,
-      "key_digest": "$2b$12$uTCD1kGChKsP0OU7MAz3NuIPoMcBDXTNNnua9zzM4DbaEox4g87mG",
-      "last_name": "Leal",
-      "name": "Daniel"
-    },
-    "plain_key": "brxmDs9U6cG56N8K",
+    "created_date": "Wed, 23 Oct 2019 05:31:06 GMT",
+    "found": false,
+    "found_date": null,
+    "id": 8,
+    "key_digest": "$2b$12$uTCD1kGChKsP0OU7MAz3NuIPoMcBDXTNNnua9zzM4DbaEox4g87mG",
+    "last_name": "Leal",
+    "name": "Daniel"
   },
   "success": true
 }

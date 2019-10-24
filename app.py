@@ -122,10 +122,7 @@ def create_person():
 
         return jsonify({
             'success': True,
-            'payload': {
-                'plain_key': plain_key,
-                'person': person.serialize()
-            }
+            'payload': person.serialize()
         }), 200
     except Exception as error:
         return jsonify({'success': False, 'payload': str(error)}), 503
