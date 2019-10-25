@@ -1,5 +1,5 @@
 initial_contact_body = """
-<h3>Hola {contact_name}!</h3>
+<h3>Hola!</h3>
 <p>
     Si te ha llegado este mail, es porque ingresaste a {missing_name}
     en la página ¿Dónde Están? por sospecha de desaparición.
