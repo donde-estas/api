@@ -11,7 +11,7 @@ initial_contact_body = """
 </p>
 {find_person_button}
 <p>
-    Alternatívamente, la clave para acceder a la <a href="http://google.com">página</a> y marcar a {contact_name} como
-    encontrad@ es: <b>{key}</b>
+    Alternatívamente, puede acceder a la <a href="http://donde-estas.herokuapp.com">página</a>, buscar y marcar a {missing_name} como
+    encontrad@ con la siguiente clave: <b>{key}</b>
 </p>
 """.replace("\n", " ").replace("  ", " ")
