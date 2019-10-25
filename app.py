@@ -109,9 +109,11 @@ def create_person():
             raise InvalidMailError(contact_mail)
         plain_key = generate_random_key()
 
-        last_seen = request.args.get('last_seen')
-        latitude = float(request.args.get('latitude').strip())
-        longitude = float(request.args.get('longitude').strip())
+        last_seen = False  # request.args.get('last_seen')
+        latitude = request.args.get('latitude')
+        latitude = float(latitude.strip()) if latitude else None
+        longitude = request.args.get('longitude')
+        longitude = float(longitude.strip()) if longitude else None
 
         person = Person(first_name, last_name, missing_mail, contact_mail,
                         plain_key, latitude, longitude, last_seen)
