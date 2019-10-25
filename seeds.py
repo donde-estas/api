@@ -1,5 +1,6 @@
 from random import random, randint
 from datetime import timedelta
+from unidecode import unidecode
 from faker import Faker
 from faker.providers import internet, geo
 from flask_script import Command
@@ -70,4 +71,4 @@ class PersonSeeder(Command):
         username = first_name.lower()[0] + last_name.lower()[:randint(3, 7)]
         number = "".join([str(randint(0, 9)) for _ in range(randint(0, 4))])
         domain = PersonSeeder.fake.free_email_domain()
-        return f'{username}{number}@{domain}'
+        return unidecode(f'{username}{number}@{domain}')
