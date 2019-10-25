@@ -1,45 +1,89 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: https://donde-estas-api.herokuapp.com/
 
-# donde-estas
+# Donde Estás API
 
 Polls is a simple API allowing consumers to view polls and vote in them.
 
-## Questions Collection [/questions]
+## Missing Collection [/missing]
 
-### List All Questions [GET]
+### Get All Missing [GET]
 
-+ Response 200 (application/json)
++ Response 200
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+        {
+            "payload": [
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:29 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 23,
+                    "last_name": "Monroy",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 23,
+                        "latitude": -30.60106,
+                        "longitude": -71.19901
+                    },
+                    "name": "Adela"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:29 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 24,
+                    "last_name": "Quezada",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 24,
+                        "latitude": -36.9256,
+                        "longitude": -73.02841
+                    },
+                    "name": "Guadalupe"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:30 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 27,
+                    "last_name": "Reséndez",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 27,
+                        "latitude": -36.9256,
+                        "longitude": -73.02841
+                    },
+                    "name": "Olivia"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:31 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 28,
+                    "last_name": "Gutiérrez",
+                    "last_seen": {
+                        "existent": false,
+                        "id": 28,
+                        "latitude": null,
+                        "longitude": null
+                    },
+                    "name": "Julio"
+                }
+            ],
+            "success": true
+        }
 
-### Create a New Question [POST]
+        
++ Response 503
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+        {
+            "payload": "Generic message detailing the failure",
+            "success": false
+        }
 
-+ Request (application/json)
+### Set missing person as found [POST]
+
++ Request 200
 
         {
             "question": "Favourite programming language?",
@@ -78,3 +122,318 @@ form of choices.
                     }
                 ]
             }
+
+## Found Collection [/found]
+
+### Get All Found [GET]
+
++ Response 200
+
+        {
+            "payload": [
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:28 GMT",
+                    "found": true,
+                    "found_date": "Sun, 27 Oct 2019 00:18:06 GMT",
+                    "id": 21,
+                    "last_name": "Maldonado",
+                    "last_seen": {
+                        "existent": false,
+                        "id": 21,
+                        "latitude": null,
+                        "longitude": null
+                    },
+                    "name": "Helena"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:28 GMT",
+                    "found": true,
+                    "found_date": "Sat, 26 Oct 2019 21:52:47 GMT",
+                    "id": 22,
+                    "last_name": "Coronado",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 22,
+                        "latitude": -33.59217,
+                        "longitude": -70.6996
+                    },
+                    "name": "Carlota"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:29 GMT",
+                    "found": true,
+                    "found_date": "Sun, 27 Oct 2019 06:29:33 GMT",
+                    "id": 25,
+                    "last_name": "Toledo",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 25,
+                        "latitude": -32.45242,
+                        "longitude": -71.23106
+                    },
+                    "name": "Leonel"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:30 GMT",
+                    "found": true,
+                    "found_date": "Sun, 27 Oct 2019 13:14:50 GMT",
+                    "id": 26,
+                    "last_name": "Monroy",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 26,
+                        "latitude": -32.45242,
+                        "longitude": -71.23106
+                    },
+                    "name": "Mayte"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:31 GMT",
+                    "found": true,
+                    "found_date": "Mon, 28 Oct 2019 01:18:25 GMT",
+                    "id": 29,
+                    "last_name": "Palomo",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 29,
+                        "latitude": -32.45242,
+                        "longitude": -71.23106
+                    },
+                    "name": "Rebeca"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:32 GMT",
+                    "found": true,
+                    "found_date": "Mon, 28 Oct 2019 00:23:08 GMT",
+                    "id": 30,
+                    "last_name": "Quintanilla",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 30,
+                        "latitude": -33.59217,
+                        "longitude": -70.6996
+                    },
+                    "name": "Emiliano"
+                }
+            ],
+            "success": true
+        }
+
+        
++ Response 503
+
+        {
+            "payload": "Generic message detailing the failure",
+            "success": false
+        }
+
+## Person Collection [/person]
+
+### Get Every Person [GET]
+
++ Response 200
+
+        {
+            "payload": [
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:29 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 23,
+                    "last_name": "Monroy",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 23,
+                        "latitude": -30.60106,
+                        "longitude": -71.19901
+                    },
+                    "name": "Adela"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:29 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 24,
+                    "last_name": "Quezada",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 24,
+                        "latitude": -36.9256,
+                        "longitude": -73.02841
+                    },
+                    "name": "Guadalupe"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:29 GMT",
+                    "found": true,
+                    "found_date": "Sun, 27 Oct 2019 06:29:33 GMT",
+                    "id": 25,
+                    "last_name": "Toledo",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 25,
+                        "latitude": -32.45242,
+                        "longitude": -71.23106
+                    },
+                    "name": "Leonel"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:30 GMT",
+                    "found": true,
+                    "found_date": "Sun, 27 Oct 2019 13:14:50 GMT",
+                    "id": 26,
+                    "last_name": "Monroy",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 26,
+                        "latitude": -32.45242,
+                        "longitude": -71.23106
+                    },
+                    "name": "Mayte"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:30 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 27,
+                    "last_name": "Reséndez",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 27,
+                        "latitude": -36.9256,
+                        "longitude": -73.02841
+                    },
+                    "name": "Olivia"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:31 GMT",
+                    "found": false,
+                    "found_date": null,
+                    "id": 28,
+                    "last_name": "Gutiérrez",
+                    "last_seen": {
+                        "existent": false,
+                        "id": 28,
+                        "latitude": null,
+                        "longitude": null
+                    },
+                    "name": "Julio"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:31 GMT",
+                    "found": true,
+                    "found_date": "Mon, 28 Oct 2019 01:18:25 GMT",
+                    "id": 29,
+                    "last_name": "Palomo",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 29,
+                        "latitude": -32.45242,
+                        "longitude": -71.23106
+                    },
+                    "name": "Rebeca"
+                },
+                {
+                    "created_date": "Thu, 24 Oct 2019 23:28:32 GMT",
+                    "found": true,
+                    "found_date": "Mon, 28 Oct 2019 00:23:08 GMT",
+                    "id": 30,
+                    "last_name": "Quintanilla",
+                    "last_seen": {
+                        "existent": true,
+                        "id": 30,
+                        "latitude": -33.59217,
+                        "longitude": -70.6996
+                    },
+                    "name": "Emiliano"
+                }
+            ],
+            "success": true
+        }
+
+        
++ Response 503
+
+        {
+            "payload": "Generic message detailing the failure",
+            "success": false
+        }
+
+### Create Person [POST]
+
++ Request 200
+
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "missing_mail": "john.doe@example.com",
+            "contact_mail": "contact@example.com",
+            "last_seen": true,
+            "latitude": -33.59217,
+            "longitude": -70.6996
+        }
+
++ Response 200
+
+        {
+            "payload": {
+                "created_date": "Fri, 25 Oct 2019 02:01:50 GMT",
+                "found": false,
+                "found_date": null,
+                "id": 35,
+                "last_name": "Doe",
+                "last_seen": {
+                    "existent": true,
+                    "id": 31,
+                    "latitude": -33.59217,
+                    "longitude": -70.6996
+                },
+                "name": "John"
+            },
+            "success": true
+        }
+
++ Request 400
+
+        {
+            "first_name": "Zendaya",
+            "last_name": "",
+            "missing_mail": "zendaya@real.com",
+            "contact_mail": "contact@example.com",
+            "last_seen": true,
+            "latitude": -33.59217,
+            "longitude": -70.6996
+        }
+
++ Response 400
+
+        {
+          "payload": "EmptyNameError: Cannot parse an empty name",
+          "success": false
+        }
+
++ Request 400
+
+        {
+            "first_name": "John",
+            "last_name": "Doe",
+            "missing_mail": "zendaya@real.com",
+            "contact_mail": "bad-example.com",
+            "last_seen": true,
+            "latitude": -33.59217,
+            "longitude": -70.6996
+        }
+
++ Response 400
+
+        {
+          "payload": "InvalidMailError: Invalid mail format: bad-example.com",
+          "success": false
+        }
+
++ Response 503
+
+        {
+          "payload": "InvalidMailError: Invalid mail format: bad-example.com",
+          "success": false
+        }
