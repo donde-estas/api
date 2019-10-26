@@ -20,5 +20,8 @@ initial_missing_body = """
     siguiente clave: <b>{key}</b>
 </p>
 """.replace("\n", " ").replace("  ", " ").replace("  ", " ").format(
-    webapp_url=os.environ.get('WEBAPP_URL')
+    webapp_url=os.environ.get('WEBAPP_URL'),
+    missing_name="{missing_name}",
+    find_person_button="{find_person_button}",
+    key="{key}"
 )
