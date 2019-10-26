@@ -126,7 +126,8 @@ def create_person():
         db.session.add(person)
         db.session.commit()
 
-        found_link = f"http://donde-estas.herokuapp.com/person/{person.id}/find/{plain_key}"
+        found_link = (f'http://donde-estas.herokuapp.com/'
+                      f'person/{person.id}/find/{plain_key}')
 
         missing_s = dispatch_mail(
             missing_mail,
@@ -158,7 +159,8 @@ def create_person():
 
             return jsonify({
                 'success': False,
-                'payload': 'Mailer error occurred, could not deliver secret key (Missing person not created)'
+                'payload': ('Mailer error occurred, could not deliver '
+                            'secret key (Missing person not created)')
             }), max(missing_s.status_code, contact_s.status_code)
 
         return jsonify({
