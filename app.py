@@ -158,7 +158,7 @@ def create_person():
 
             return jsonify({
                 'success': False,
-                'payload': 'Mailer error ocurred, could not deliver secret key (Missing person not created)'
+                'payload': 'Mailer error occurred, could not deliver secret key (Missing person not created)'
             }), max(missing_s.status_code, contact_s.status_code)
 
         return jsonify({
