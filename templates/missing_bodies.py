@@ -1,3 +1,6 @@
+import os
+
+
 initial_missing_body = """
 <h3>Hola {missing_name}!</h3>
 <p>
@@ -12,8 +15,10 @@ initial_missing_body = """
 {find_person_button}
 <p>
     Alternativamente, puedes acceder a
-    <a href="http://donde-estas.herokuapp.com/">la página</a>, buscar
+    <a href="{webapp_url}/">la página</a>, buscar
     tu nombre {missing_name} y marcarte como encontrad@ con la
     siguiente clave: <b>{key}</b>
 </p>
-""".replace("\n", " ").replace("  ", " ")
+""".replace("\n", " ").replace("  ", " ").replace("  ", " ").format(
+    webapp_url=os.environ.get('WEBAPP_URL')
+)

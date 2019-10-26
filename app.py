@@ -126,7 +126,7 @@ def create_person():
         db.session.add(person)
         db.session.commit()
 
-        found_link = (f'http://donde-estas.herokuapp.com/'
+        found_link = (f'{os.environ.get('WEBAPP_URL')}/'
                       f'person/{person.id}/find/{plain_key}')
 
         missing_s = dispatch_mail(
