@@ -121,11 +121,15 @@ def create_person():
         # Generate mails
         mail_args = {
             'missing_name': f'{first_name} {last_name}',
-            'contact_name': 'Generic Contact Person',
             'key': plain_key
         }
 
-        found_link = "https://google.com"
+        # Save Person in the database
+        db.session.add(person)
+        db.session.commit()
+
+        found_link = (f'{os.environ.get("WEBAPP_URL")}/'
+                      f'person/{person.id}/find/{plain_key}')
 
         missing_s = dispatch_mail(
             missing_mail,
@@ -151,14 +155,15 @@ def create_person():
         )
 
         if missing_s.status_code != 200 and contact_s.status_code != 200:
+            # Eliminar a persona de la base de datos
+            db.session.delete(person)
+            db.session.commit()
+
             return jsonify({
                 'success': False,
-                'payload': 'Mailer error, could not deliver secret key'
+                'payload': ('Mailer error occurred, could not deliver '
+                            'secret key (Missing person not created)')
             }), max(missing_s.status_code, contact_s.status_code)
-
-        # Save Person in the database
-        db.session.add(person)
-        db.session.commit()
 
         return jsonify({
             'success': True,

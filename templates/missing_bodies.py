@@ -1,8 +1,11 @@
+import os
+
+
 initial_missing_body = """
 <h3>Hola {missing_name}!</h3>
 <p>
-    Si te ha llegado este mail, es porque has sido ingresado en la
-    página ¿Dónde Estás? cómo persona desaparecida por {contact_name}.
+    Si te ha llegado este mail, es porque has sido ingresad@ como persona
+    desaparecida en nuestra página ¿Dónde Estás?.
     En caso de que creas que esto fue un error,
     se agradecería responder este mail con el asunto ERROR.
     En caso contrario, y si usted se encuentra bien, por favor
@@ -11,7 +14,14 @@ initial_missing_body = """
 </p>
 {find_person_button}
 <p>
-    Alternativamente, la clave para acceder a la <a href="http://google.com">página</a> y marcarte como
-    encontrad@ es: <b>{key}</b>
+    Alternativamente, puedes acceder a
+    <a href="{webapp_url}/">la página</a>, buscar
+    tu nombre {missing_name} y marcarte como encontrad@ con la
+    siguiente clave: <b>{key}</b>
 </p>
-""".replace("\n", " ").replace("  ", " ")
+""".replace("\n", " ").replace("  ", " ").replace("  ", " ").format(
+    webapp_url=os.environ.get('WEBAPP_URL'),
+    missing_name="{missing_name}",
+    find_person_button="{find_person_button}",
+    key="{key}"
+)
