@@ -153,7 +153,6 @@ def create_person():
 
         if missing_s.status_code != 200 and contact_s.status_code != 200:
             # Eliminar a persona de la base de datos
-            person = Person.query.filter_by(id=person.id).first()
             db.session.delete(person)
             db.session.commit()
 
